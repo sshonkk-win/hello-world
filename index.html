@@ -33,12 +33,13 @@
         .window-body.has-space p {
             margin: 0 0 10px 0; /* Adds space below the text */
         }
+
         .marquee {
             width: 90%; /* Ensures the progress bar has a visible width */
             height: 13px; /* Sets a fixed height for the progress bar */
             background-color: rgb(255, 255, 255); /* Optional: Add background color for visibility */
         }
-        </style>
+    </style>
 </head>
 <body>
     <div class="window glass active window-position" style="max-width: 1000px">
@@ -52,9 +53,34 @@
         </div>
         <div class="window-body has-space">
           <p>Transforming</p>
+          <p id="typewriter"></p> <!-- Empty initially, will be filled by JavaScript -->
           <div role="progressbar" class="marquee"></div>
         </div>
       </div>
       <div role="tooltip" class="tooltip-position is-top is-left">Site broken? click this balloon to go to basic HTML mode</div>
+
+    <script>
+        // Function to simulate typing effect and convert HTML entities
+        function typeWriter(element, text, speed) {
+            let i = 0;
+            let interval = setInterval(function() {
+                // Set the text content, but using innerHTML to interpret HTML entities
+                element.innerHTML += text.charAt(i);
+                i++;
+                if (i > text.length - 1) {
+                    clearInterval(interval); // Stop the interval once all characters are typed
+                }
+            }, speed);
+        }
+
+        // Text with HTML entities (trash characters) that will convert to real text
+        const textToType = "Hi there! This is a (little) advanced  HTML page. Click the balloon to go to basic HTML mode. ❤️";
+
+        // Start typing effect on page load
+        window.onload = function() {
+            const pElement = document.getElementById("typewriter");
+            typeWriter(pElement, textToType, 100); // 100ms speed per character
+        };
+    </script>
 </body>
 </html>
