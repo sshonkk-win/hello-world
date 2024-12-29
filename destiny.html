@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/7.css" />
+    <style>
+        body {
+          background-image: url('images/img0.jpg');
+          background-color: rebeccapurple; /* Fallback color */
+          background-size: cover; /* Ensures the image covers the screen without distortion */
+            background-repeat: no-repeat; /* Prevents the image from tiling */
+            background-position: center; /* Centers the image */
+            height: 100vh; /* Ensures the body takes up the full viewport height */
+            margin: 0; /* Removes default margin for the body */
+        }
+        
+        .window-position {
+        position: fixed; /* Fixes the tooltip to the viewport */
+          left: 50%; /* Centers horizontally relative to the viewport */
+          bottom: 50%; /* Centers horizontally relative to the viewport */
+          transform: translateX(-50%); /* Adjusts to ensure exact center alignment */
+        }
+        .window-body.has-space {
+            display: flex;
+            flex-direction: column; /* Stacks elements vertically */
+            justify-content: center; /* Centers content vertically */
+            align-items: center; /* Centers content horizontally */
+            height: 100%; /* Takes full height of parent */
+        }
+
+        .window-body.has-space p {
+            margin: 0 0 10px 0; /* Adds space below the text */
+        }
+
+        .marquee {
+            width: 90%; /* Ensures the progress bar has a visible width */
+            height: 13px; /* Sets a fixed height for the progress bar */
+            background-color: rgb(255, 255, 255); /* Optional: Add background color for visibility */
+        }
+    </style>
+</head>
+<body>
+    <div class="window glass active window-position" style="max-width: 1000px">
+        <div class="title-bar">
+          <div class="title-bar-text">TRANSFORM.EXE&#8206;&#32;&#8206;&#32;&#8206;&#32;&#8206;&#32;&#8206;&#32;</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="window-body has-space">
+          <p>Transforming</p>
+          <p id="typewriter"></p> <!-- Empty initially, will be filled by JavaScript -->
+          <div role="progressbar" class="marquee"></div>
+        </div>
+      </div>
+      <div role="tooltip" class="tooltip-position is-top is-left">Site broken? click this balloon to go to basic HTML mode</div>
+
+    <script>
+        // Function to simulate typing effect and convert HTML entities
+        function typeWriter(element, text, speed) {
+            let i = 0;
+            let interval = setInterval(function() {
+                // Set the text content, but using innerHTML to interpret HTML entities
+                element.innerHTML += text.charAt(i);
+                i++;
+                if (i > text.length - 1) {
+                    clearInterval(interval); // Stop the interval once all characters are typed
+                }
+            }, speed);
+        }
+
+        // Text with HTML entities (trash characters) that will convert to real text
+        const textToType = "Hi there! This is a (little) advanced  HTML page. Click the balloon to go to basic HTML mode. ❤️";
+
+        // Start typing effect on page load
+        window.onload = function() {
+            const pElement = document.getElementById("typewriter");
+            typeWriter(pElement, textToType, 100); // 100ms speed per character
+        };
+    </script>
+</body>
+</html>

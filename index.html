@@ -3,84 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://unpkg.com/7.css" />
+    <title>About Me</title>
     <style>
+        /* General Styles */
         body {
-          background-image: url('images/img0.jpg');
-          background-color: rebeccapurple; /* Fallback color */
-          background-size: cover; /* Ensures the image covers the screen without distortion */
-            background-repeat: no-repeat; /* Prevents the image from tiling */
-            background-position: center; /* Centers the image */
-            height: 100vh; /* Ensures the body takes up the full viewport height */
-            margin: 0; /* Removes default margin for the body */
+            font-family: Arial, sans-serif;
+            background-color: #FBFAF5;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
         }
         
-        .window-position {
-        position: fixed; /* Fixes the tooltip to the viewport */
-          left: 50%; /* Centers horizontally relative to the viewport */
-          bottom: 50%; /* Centers horizontally relative to the viewport */
-          transform: translateX(-50%); /* Adjusts to ensure exact center alignment */
-        }
-        .window-body.has-space {
-            display: flex;
-            flex-direction: column; /* Stacks elements vertically */
-            justify-content: center; /* Centers content vertically */
-            align-items: center; /* Centers content horizontally */
-            height: 100%; /* Takes full height of parent */
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
         }
 
-        .window-body.has-space p {
-            margin: 0 0 10px 0; /* Adds space below the text */
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
-        .marquee {
-            width: 90%; /* Ensures the progress bar has a visible width */
-            height: 13px; /* Sets a fixed height for the progress bar */
-            background-color: rgb(255, 255, 255); /* Optional: Add background color for visibility */
+        p {
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            line-height: 1.5;
+            max-width: 600px;
         }
+
+        .highlight {
+            background-color: #000;
+            color: #FBFAF5;
+            padding: 0.2em 0.5em;
+            border-radius: 5px;
+        }
+
+        footer {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Button styles */
+        .button {
+            background-color: #000;
+            color: #FBFAF5;
+            border: none;
+            padding: 0.7em 1.5em;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .button:hover {
+            background-color: #333;
+        }
+
+        .boton-elegante {
+  padding: 15px 30px;
+  border: none;
+  background-color: #1a1a1a;
+  color: #FBFAF5;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.4s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.boton-elegante::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.boton-elegante:hover::after {
+  transform: scale(4);
+}
+
+.boton-elegante:hover {
+  border-color: #666666;
+  background: #292929;
+}
+
     </style>
 </head>
 <body>
-    <div class="window glass active window-position" style="max-width: 1000px">
-        <div class="title-bar">
-          <div class="title-bar-text">TRANSFORM.EXE&#8206;&#32;&#8206;&#32;&#8206;&#32;&#8206;&#32;&#8206;&#32;</div>
-          <div class="title-bar-controls">
-            <button aria-label="Minimize"></button>
-            <button aria-label="Maximize"></button>
-            <button aria-label="Close"></button>
-          </div>
-        </div>
-        <div class="window-body has-space">
-          <p>Transforming</p>
-          <p id="typewriter"></p> <!-- Empty initially, will be filled by JavaScript -->
-          <div role="progressbar" class="marquee"></div>
-        </div>
-      </div>
-      <div role="tooltip" class="tooltip-position is-top is-left">Site broken? click this balloon to go to basic HTML mode</div>
+    <h1>About <span class="highlight">Me</span></h1>
+    <h2>Hi, I'm Your Name!</h2>
+    <p>
+        I'm a passionate developer with a love for creating beautiful and functional designs.
+        When I'm not coding, you can find me exploring new places, reading a good book, or experimenting with new recipes in the kitchen.
+    </p>
+    <p>
+        I'm currently focused on building user-friendly applications that make a difference. Let's connect and create something amazing!
+    </p>
+    <button class="boton-elegante" onclick="alert('Thanks for visiting my About Me page!')">Say Hi!</button>
 
-    <script>
-        // Function to simulate typing effect and convert HTML entities
-        function typeWriter(element, text, speed) {
-            let i = 0;
-            let interval = setInterval(function() {
-                // Set the text content, but using innerHTML to interpret HTML entities
-                element.innerHTML += text.charAt(i);
-                i++;
-                if (i > text.length - 1) {
-                    clearInterval(interval); // Stop the interval once all characters are typed
-                }
-            }, speed);
-        }
-
-        // Text with HTML entities (trash characters) that will convert to real text
-        const textToType = "Hi there! This is a (little) advanced  HTML page. Click the balloon to go to basic HTML mode. ❤️";
-
-        // Start typing effect on page load
-        window.onload = function() {
-            const pElement = document.getElementById("typewriter");
-            typeWriter(pElement, textToType, 100); // 100ms speed per character
-        };
-    </script>
+    <footer>
+        &copy; 2024 Your Name. All rights reserved.
+    </footer>
 </body>
 </html>
