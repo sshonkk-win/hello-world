@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
+    <link rel="stylesheet" href="https://v8.js-dos.com/latest/js-dos.css">
+    <style>
+        @font-face {
+            font-family: DOS;
+            src: url(MorePerfectDOSVGA.ttf);
+        }
+        .window-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .dos-container {
+            border: 2px solid black;
+            padding: 0;
+            background-color: rgb(0, 0, 0);
+            width: 95%;
+            height: 400px;
+        }
+        .textb {
+            color: rgb(255, 255, 255);
+            font-family: 'DOS';
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="window" style="width: 100%; max-width: 1000px; min-width: 100px;">
+        <div class="title-bar">
+          <div class="title-bar-text">A Window With Stuff In It</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+            <div id="dos" style="width: 100vw; height: 60vw;"></div>
+        </div>
+    </div>
+
+    <script>
+        Dos(document.getElementById("dos"), {
+            url: "https://cdn.dos.zone/original/2X/9/9ed7eb9c2c441f56656692ed4dc7ab28f58503ce.jsdos",
+        });
+    </script>
+</body>
+</html>
