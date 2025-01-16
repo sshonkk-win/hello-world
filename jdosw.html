@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows 95 in JS-DOS</title>
+  <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
+</head>
+<body>
+  <div id="jsdos"></div>
+  <script>
+    Dos(document.getElementById("jsdos"), {
+      wdosboxUrl: "https://js-dos.com/6.22/wdosbox.js"
+    }).ready((fs, main) => {
+      fs.extract("windows95.zip").then(() => {
+        main(["-conf", "dosbox.conf"]);
+      });
+    });
+  </script>
+</body>
+</html>
